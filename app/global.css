@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --meridian-gold: #C9A96E;
+  --autos-gold: #D4A017;
+  --receipt-paper: #FFF9F0;
+  --receipt-ink: #1A1A1A;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0A0A0A;
+  color: #F5F5F0;
+  overflow-x: hidden;
+}
+
+.receipt-paper {
+  background: var(--receipt-paper);
+  color: var(--receipt-ink);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.receipt-dashes {
+  border-top: 2px dashed var(--receipt-ink);
+  opacity: 0.2;
+  margin: 12px 0;
+}
+
+.nutrition-table {
+  width: 100%;
+  border: 2px solid var(--receipt-ink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+}
+.nutrition-table th {
+  background: var(--receipt-ink);
+  color: var(--receipt-paper);
+  padding: 4px 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.nutrition-table td {
+  padding: 3px 8px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0A0A0A; }
+::-webkit-scrollbar-thumb { background: #3A3A3A; border-radius: 2px; }
+
+.canvas-container { position: relative; width: 100%; cursor: grab; }
+.canvas-container:active { cursor: grabbing; }
