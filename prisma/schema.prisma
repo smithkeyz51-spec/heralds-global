@@ -1,0 +1,139 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  phone     String?
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bookings  Booking[]
+  cartItems CartItem[]
+  inquiries Inquiry[]
+}
+
+enum Role { USER ADMIN }
+
+model Property {
+  id          String       @id @default(cuid())
+  title       String
+  slug        String       @unique
+  type        PropertyType
+  description String
+  price       Float
+  priceUnit   String       @default("night")
+  location    String
+  address     String?
+  bedrooms    Int?
+  bathrooms   Int?
+  amenities   String[]
+  images      String[]
+  available   Boolean      @default(true)
+  featured    Boolean      @default(false)
+  barcode     String       @unique @default(cuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  bookings    Booking[]
+  cartItems   CartItem[]
+}
+
+enum PropertyType { SHORTLET APARTMENT DUPLEX OFFICE LAND }
+
+model Booking {
+  id         String        @id @default(cuid())
+  userId     String
+  propertyId String
+  checkIn    DateTime
+  checkOut   DateTime
+  guests     Int           @default(1)
+  totalPrice Float
+  status     BookingStatus @default(PENDING)
+  notes      String?
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  user       User          @relation(fields: [userId], references: [id])
+  property   Property      @relation(fields: [propertyId], references: [id])
+}
+
+enum BookingStatus { PENDING CONFIRMED CANCELLED COMPLETED }
+
+model Car {
+  id           String    @id @default(cuid())
+  title        String
+  slug         String    @unique
+  make         String
+  model        String
+  year         Int
+  price        Float
+  mileage      Int?
+  fuelType     String
+  transmission String
+  color        String?
+  description  String
+  features     String[]
+  images       String[]
+  available    Boolean   @default(true)
+  featured     Boolean   @default(false)
+  barcode      String    @unique @default(cuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  inquiries    Inquiry[]
+  cartItems    CartItem[]
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  price       Float
+  features    String[]
+  category    String
+  barcode     String   @unique @default(cuid())
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  cartItems   CartItem[]
+}
+
+model CartItem {
+  id         String   @id @default(cuid())
+  userId     String?
+  sessionId  String?
+  itemType   ItemType
+  propertyId String?
+  carId      String?
+  serviceId  String?
+  quantity   Int      @default(1)
+  createdAt  DateTime @default(now())
+  user       User?     @relation(fields: [userId], references: [id])
+  property   Property? @relation(fields: [propertyId], references: [id])
+  car        Car?      @relation(fields: [carId], references: [id])
+  service    Service?  @relation(fields: [serviceId], references: [id])
+}
+
+enum ItemType { PROPERTY CAR SERVICE }
+
+model Inquiry {
+  id        String        @id @default(cuid())
+  userId    String?
+  carId     String?
+  name      String
+  email     String
+  phone     String?
+  message   String
+  status    InquiryStatus @default(NEW)
+  createdAt DateTime      @default(now())
+  user      User?  @relation(fields: [userId], references: [id])
+  car       Car?   @relation(fields: [carId], references: [id])
+}
+
+enum InquiryStatus { NEW CONTACTED CLOSED }
