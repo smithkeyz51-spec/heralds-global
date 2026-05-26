@@ -21,7 +21,10 @@ model User {
   inquiries Inquiry[]
 }
 
-enum Role { USER ADMIN }
+enum Role {
+  USER
+  ADMIN
+}
 
 model Property {
   id          String       @id @default(cuid())
@@ -46,7 +49,13 @@ model Property {
   cartItems   CartItem[]
 }
 
-enum PropertyType { SHORTLET APARTMENT DUPLEX OFFICE LAND }
+enum PropertyType {
+  SHORTLET
+  APARTMENT
+  DUPLEX
+  OFFICE
+  LAND
+}
 
 model Booking {
   id         String        @id @default(cuid())
@@ -64,7 +73,12 @@ model Booking {
   property   Property      @relation(fields: [propertyId], references: [id])
 }
 
-enum BookingStatus { PENDING CONFIRMED CANCELLED COMPLETED }
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
 
 model Car {
   id           String    @id @default(cuid())
@@ -105,22 +119,27 @@ model Service {
 }
 
 model CartItem {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   userId     String?
   sessionId  String?
   itemType   ItemType
   propertyId String?
   carId      String?
   serviceId  String?
-  quantity   Int      @default(1)
-  createdAt  DateTime @default(now())
+  quantity   Int       @default(1)
+  createdAt  DateTime  @default(now())
+
   user       User?     @relation(fields: [userId], references: [id])
   property   Property? @relation(fields: [propertyId], references: [id])
   car        Car?      @relation(fields: [carId], references: [id])
   service    Service?  @relation(fields: [serviceId], references: [id])
 }
 
-enum ItemType { PROPERTY CAR SERVICE }
+enum ItemType {
+  PROPERTY
+  CAR
+  SERVICE
+}
 
 model Inquiry {
   id        String        @id @default(cuid())
@@ -132,8 +151,13 @@ model Inquiry {
   message   String
   status    InquiryStatus @default(NEW)
   createdAt DateTime      @default(now())
-  user      User?  @relation(fields: [userId], references: [id])
-  car       Car?   @relation(fields: [carId], references: [id])
+
+  user      User? @relation(fields: [userId], references: [id])
+  car       Car?  @relation(fields: [carId], references: [id])
 }
 
-enum InquiryStatus { NEW CONTACTED CLOSED }
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
