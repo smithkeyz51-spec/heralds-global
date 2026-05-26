@@ -1,0 +1,103 @@
+export const BRANDS = {
+  agency: {
+    name: 'TheHeraldsGlobal',
+    tagline: "We Don't Market Brands. We Build Legends.",
+    services: [
+      {
+        id: 'svc-social', slug: 'social-media-management',
+        title: 'Social Media Management', price: 150000, priceUnit: 'month',
+        barcode: '7891234560010',
+        description: 'Full-stack social media takeover. Strategy, content, scheduling, analytics.',
+        features: ['12 posts/month', 'Story management', 'Monthly analytics', 'Community management'],
+        category: 'Digital',
+        nutrition: { 'Engagement Rate': '↑ 340%', 'Reach Growth': '↑ 520%', 'Posts': '48/quarter', 'Response': '< 2hrs' },
+      },
+      {
+        id: 'svc-brand', slug: 'brand-identity',
+        title: 'Brand Identity Design', price: 250000, priceUnit: 'project',
+        barcode: '7891234560027',
+        description: 'Logo, typography, color system, brand guidelines — the full package.',
+        features: ['Logo (3 concepts)', 'Brand guidelines', 'Business card', 'Social media kit'],
+        category: 'Design',
+        nutrition: { 'Logo Concepts': '3', 'Revisions': 'Unlimited', 'File Formats': 'All', 'Timeline': '2-3 weeks' },
+      },
+      {
+        id: 'svc-content', slug: 'content-creation',
+        title: 'Content Creation', price: 80000, priceUnit: 'month',
+        barcode: '7891234560034',
+        description: 'Professional photo & video content tailored for your brand.',
+        features: ['Monthly shoot day', '20 edited images', '4 short videos', 'Caption writing'],
+        category: 'Creative',
+        nutrition: { 'Photos/Month': '20', 'Videos/Month': '4', 'Resolution': '4K', 'Turnaround': '48hrs' },
+      },
+      {
+        id: 'svc-ads', slug: 'paid-advertising',
+        title: 'Paid Advertising', price: 120000, priceUnit: 'month',
+        barcode: '7891234560041',
+        description: 'Meta Ads, Google Ads, TikTok Ads — ROI-driven campaigns.',
+        features: ['Campaign strategy', 'Ad creative', 'A/B testing', 'Weekly reporting'],
+        category: 'Performance',
+        nutrition: { 'Platforms': 'Meta + Google', 'Ad Spend': 'Managed', 'Reports': 'Weekly', 'ROAS': '3-5x' },
+      },
+    ],
+  },
+  meridian: {
+    name: 'Heralds Meridian',
+    tagline: 'Where Comfort Meets Precision.',
+    sampleProperties: [
+      {
+        id: 'prop-1', slug: 'executive-shortlet-vi',
+        title: 'Executive Shortlet — Victoria Island',
+        type: 'SHORTLET', price: 45000, priceUnit: 'night',
+        location: 'Victoria Island, Lagos', bedrooms: 2, bathrooms: 2,
+        barcode: '6001234570018',
+        description: 'Fully serviced 2-bedroom apartment in the heart of VI.',
+        amenities: ['WiFi', 'AC', 'Smart TV', 'Full Kitchen', 'Gym', '24h Security'],
+        images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800'],
+        available: true, featured: true,
+      },
+      {
+        id: 'prop-2', slug: 'luxury-duplex-lekki',
+        title: 'Luxury Duplex — Lekki Phase 1',
+        type: 'DUPLEX', price: 850000, priceUnit: 'month',
+        location: 'Lekki Phase 1, Lagos', bedrooms: 4, bathrooms: 4,
+        barcode: '6001234570025',
+        description: '4-bedroom fully detached duplex with BQ and pool.',
+        amenities: ['Swimming Pool', 'BQ', 'Smart Home', '2 Parking', 'Generator'],
+        images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800'],
+        available: true, featured: true,
+      },
+    ],
+  },
+  autos: {
+    name: 'Heralds Autos',
+    tagline: 'Not Just a Car. A Statement.',
+    sampleCars: [
+      {
+        id: 'car-1', slug: 'mercedes-gle-2023',
+        title: '2023 Mercedes-Benz GLE 450',
+        make: 'Mercedes-Benz', model: 'GLE 450', year: 2023,
+        price: 85000000, mileage: 12000, fuelType: 'Petrol', transmission: 'Automatic', color: 'Obsidian Black',
+        barcode: '5001234580019',
+        description: 'Foreign used. UK spec. Lagos cleared. Full option.',
+        features: ['Panoramic Sunroof', 'Burmester Sound', 'AMG Package', 'Night Vision'],
+        images: ['https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800'],
+        available: true, featured: true,
+      },
+      {
+        id: 'car-2', slug: 'range-rover-sport-2022',
+        title: '2022 Range Rover Sport HSE',
+        make: 'Land Rover', model: 'Range Rover Sport', year: 2022,
+        price: 72000000, mileage: 18000, fuelType: 'Diesel', transmission: 'Automatic', color: 'Santorini Black',
+        barcode: '5001234580026',
+        description: 'UK spec. Duty paid. Immaculate condition.',
+        features: ['Air Suspension', 'Meridian Sound', 'HUD', 'Adaptive Cruise'],
+        images: ['https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=800'],
+        available: true, featured: true,
+      },
+    ],
+  },
+}
+
+export const formatPrice = (price: number) =>
+  `₦${price.toLocaleString('en-NG')}`
